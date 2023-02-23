@@ -4,6 +4,7 @@
   --clr-neutral-600: hsl(0, 0%, 88%);
   --clr-neutral-100: hsl(0, 0%, 0%);
   --clr-blue-400: hsl(213, 100%, 60%);
+  --clr-blue-100: hsl(214, 32%, 23%);
   --clr-red-400: hsl(0, 100%, 60%);
 
   --bg-submit: var(--clr-blue-400);
@@ -22,6 +23,7 @@
   --fw-bold: 700;
   --fw-medium: 500;
 
+  --fs-300: .8rem;
   --fs-400: 1rem;
   --fs-500: 1.3rem;
 
@@ -108,18 +110,6 @@ input, select {
   width: 100%;
 }
 
-/* Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
 input:is(:focus, :active) {
   border-color: transparent;
 }
@@ -140,6 +130,13 @@ tbody td,
 tbody th {
   font-weight: var(--fw-normal);
 }
+
+.svg {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
 
 .border-bottom-100 {
   border-bottom: 1px solid var(--clr-neutral-100);
@@ -196,6 +193,9 @@ tbody th {
   font-weight: var(--fw-bold);
 }
 
+.fs-300 {
+  font-style: var(--fs-300);
+}
 .fs-400 {
   font-size: var(--fs-400);
 }
@@ -228,6 +228,7 @@ tbody th {
 }
 .btn:hover {
   opacity: .9;
+  cursor: pointer;
 }
 .btn:active {
   opacity: 1;
@@ -237,11 +238,22 @@ body {
   font-family: var(--ff);
 }
 
-.fields {
+.form-wrap {
   align-items: flex-end;
 }
 
 .delete {
   color: var(--clr-red-400);
   cursor: pointer;
+}
+
+button[value="read"] {
+  width: 100px;
+  color: var(--clr-neutral-900);
+  background-color: var(--bg-submit);
+}
+button[value="not read"] {
+  width: 100px;
+  color: var(--clr-neutral-900);
+  background-color: var(--bg-delete);
 }

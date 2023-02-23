@@ -7,12 +7,11 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap"
-      rel="stylesheet"
-    />
 
-    <script src="https://kit.fontawesome.com/2f19e50481.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/2f19e50481.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="./script.js" defer></script>
     <title>Library</title>
   </head>
@@ -20,35 +19,47 @@
     <div class="container padding-top-400">
       <header class="border-bottom-100"><h1>Library</h1></header>
       <div class="padding-top-300">
-        <div class="fields | flex">
-          <div>
-            <label class="fw-normal" for="input-title">Title</label>
-            <input id="input-title" type="text" class="fw-light padding-50" />
-          </div>
-          <div>
-            <label class="" for="input-author">Author</label>
-            <input id="input-author" type="text" class="fw-light padding-50" />
-          </div>
-          <div>
+        <form id="form" action="">
+          <div class="form-wrap | flex">
+            <div>
+              <label class="fw-normal" for="input-title">Title</label>
+              <input
+                id="input-title"
+                type="text"
+                class="fw-light padding-50 fs-300"
+                required
+              />
+            </div>
+            <div>
+              <label class="" for="input-author">Author</label>
+              <input
+                id="input-author"
+                type="text"
+                class="fw-light padding-50 fs-300"
+                required
+              />
+            </div>
+            <div>
               <label class="fw-normal" for="input-pages">Status</label>
               <select id="input-status" type="" class="fw-light padding-50">
                 <option value="read">Read</option>
-                <option value="notread">Not Read</option>
+                <option value="not read">Not read</option>
               </select>
+            </div>
+            <div>
+              <button
+                id="btn-submit"
+                type="submit"
+                class="btn bg-submit clr-neutral-900"
+              >
+                Submit
+              </button>
+            </div>
           </div>
-          <div>
-            <button
-              id="btn-submit"
-              type="submit"
-              class="btn bg-submit clr-neutral-900"
-            >
-              Submit
-            </button>
-          </div>
-        </div>
+        </form>
       </div>
       <div class="padding-top-400 table-wrapper">
-        <table>
+        <table id="books-table">
           <thead>
             <tr>
               <th>Name</th>
@@ -57,12 +68,38 @@
               <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="table-body">
+            <tr>
+              <th span="row">The Principles of Object-Oriented JavaScript</th>
+              <td>Nicholas C. Zakas</td>
+              <td>
+                <button name="status-btn" value="not read" class="btn">
+                  not read
+                </button>
+              </td>
+              <td>
+                <img
+                  class="svg"
+                  name="delete-icon"
+                  src="./delete-left-svgrepo-com.svg"
+                />
+              </td>
+            </tr>
             <tr>
               <th span="row">Atomic Habits</th>
               <td>James Clear</td>
-              <td><button value="read" class="btn">read</button></td>
-              <td><i class="fa-regular fa-circle-xmark fs-500 delete"></i></td>
+              <td>
+                <button name="status-btn" value="read" class="btn">
+                  read
+                </button>
+              </td>
+              <td>
+                <img
+                  class="svg"
+                  name="delete-icon"
+                  src="./delete-left-svgrepo-com.svg"
+                />
+              </td>
             </tr>
           </tbody>
         </table>

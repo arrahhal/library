@@ -3,4 +3,4 @@
 is a simple library to track your book's status by adding them to the library.
 the project is a solution to [The Odin Project](https://www.theodinproject.com).
 
-<a href="https://www.rahhaly.github.io/library" target="_blank">live preview</a>.
+[live preview](https://www.rahhaly.github.io/library).

@@ -130,13 +130,25 @@ body {
   padding-top: var(--spacing-300);
   align-items: flex-end;
 }
-
+@media (max-width: 740px) {
+  .main__form {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+  }
+}
 .main__table {
   width: 100%;
   padding-top: var(--spacing-400);
 }
 .main__table  td {
   padding-block: var(--spacing-200);
+}
+@media(max-width: 740px) {
+  .main__table {
+    margin-inline: auto;
+  }
 }
 .form__input {
   padding: var(--spacing-50);
@@ -146,7 +158,6 @@ body {
 .form__lable {
   display: block;
 }
-
 .form__submit {
   background-color: var(--bg-submit);
   color: var(--clr-neutral-900);
@@ -161,8 +172,14 @@ input[type="text"]:is(:focus, :active) {
 
 th,
 td {
-  text-align-last: left;
+  text-align: left;
   border-bottom: 1px solid var(--clr-neutral-400);
+}
+@media(max-width: 740px) {
+  th,
+  td {
+    text-align: center;
+  }
 }
 
 tbody td,
@@ -206,4 +223,12 @@ tbody th {
 .btn-blue,
 .btn-red {
   transition: ease-out .2s;
+}
+
+@media(max-width: 490px) {
+  .btn-blue,
+  .btn-red {
+    width: 3rem;
+    padding-inline: .1rem;
+  }
 }

@@ -56,11 +56,15 @@ function clearInputs() {
 
 function changeStatus(btn) {
   if(btn.value === 'read'){
-    btn.textContent = 'not read'
-    btn.value = 'not read'
+    btn.textContent = 'not read';
+    btn.value = 'not read';
+    btn.classList.add('btn-red');
+    btn.classList.remove('btn-blue')
   }
   else if(btn.value === 'not read'){
     btn.textContent = 'read';
     btn.value = 'read';
+    btn.classList.add('btn-blue');
+    btn.classList.remove('btn-red');
   }
 }

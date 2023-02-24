@@ -38,11 +38,12 @@ class Book {
 
 function addBookToLibrary(newBook) {
   myLibrary.push(newBook);
+  const statusColor = newBook.status === 'read'? 'blue':'red';
   tableBody.innerHTML += `
   <tr>
     <th span="row">${newBook.name}</th>
     <td>${newBook.author}</td>
-    <td><button name="status-btn" value="${newBook.status}" class="btn">${newBook.status}</button></td>
+    <td><button name="status-btn" value="${newBook.status}" class="btn btn-${statusColor}">${newBook.status}</button></td>
     <td><img class="svg" name="delete-icon" src="./delete-left-svgrepo-com.svg"></td>
   </tr>`;
   clearInputs();

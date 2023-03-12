@@ -3,100 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
     <script src="./script.js" defer></script>
     <title>Library</title>
   </head>
   <body>
-    <div class="main--container">
-      <header class="main__header"><h1>Library</h1></header>
-      <main>
-        <form class="main__form" id="form" action="">
-          <div>
-            <label for="input-title" class="form__lable">Title</label>
-            <input
-              id="input-title"
-              type="text"
-              class="form__input"
-              required
-            />
-          </div>
-          <div>
-            <label for="input-author" class="form__lable">Author</label>
-            <input
-              id="input-author"
-              type="text"
-              class="form__input"
-              required
-            />
-          </div>
-          <div>
-            <label for="input-status" class="form__lable">Status</label>
-            <select id="input-status" class="form__select">
-              <option value="read">Read</option>
-              <option value="not read">Not read</option>
-            </select>
-          </div>
-          <div>
-            <button
-              id="btn-submit"
-              type="submit"
-              class="form__submit btn"
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-        <table class="main__table" id="books-table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Author</th>
-              <th>Status</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="table-body">
-            <tr>
-              <th span="row">The Principles of Object-Oriented JavaScript</th>
-              <td>Nicholas C. Zakas</td>
-              <td>
-                <button name="status-btn" value="not read" class="btn btn-red">
-                  not read
-                </button>
-              </td>
-              <td>
-                <img
-                  class="svg"
-                  name="delete-icon"
-                  src="./delete-left-svgrepo-com.svg"
-                />
-              </td>
-            </tr>
-            <tr>
-              <th span="row">Atomic Habits</th>
-              <td>James Clear</td>
-              <td>
-                <button name="status-btn" value="read" class="btn btn-blue">read</button>
-              </td>
-              <td>
-                <img
-                  class="svg"
-                  name="delete-icon"
-                  src="./delete-left-svgrepo-com.svg"
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </main>
-      <footer class="main__footer">
-        <span>Created by <a href="https://www.github.com/rahhaly" target="_blank">Abdurlahman Rahhal</a></span>
-      </footer>
-    </div>
+    <main></main>
   </body>
 </html>

@@ -3,11 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <script src="./script.js" defer></script>
     <title>Library</title>
   </head>
   <body>
-    <main></main>
+    <main class="main">
+      <div class="dashboard">
+        <header class="dashboard__header">Library</header>
+        <form class="dashboard__form" action="">
+          <div class="form__input-group">
+            <input
+              class="input input--focus"
+              id="title-input"
+              type="text"
+              required
+            />
+            <span class="input__highlight"></span>
+            <span class="input__bar"></span>
+            <label class="input__label" for="title-input">Title</label>
+          </div>
+        </form>
+        <div class="dashboard__statics"></div>
+      </div>
+      <div class="book-shelf"></div>
+    </main>
   </body>
 </html>

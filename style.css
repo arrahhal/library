@@ -73,3 +73,164 @@ select {
     scroll-behavior: auto !important;
   }
 }
+:root {
+  --clr-primary-dark: #22577e;
+  --clr-primary-light: #5584ac;
+  --clr-accent: #faffaf;
+  --clr-neutral-100: #fff;
+  --clr-neutral-900: #000;
+  --clr-red: #fc7300;
+  --clr-green: #bfdb38;
+
+  --ff-poppins: 'Poppins', sans-serif;
+
+  --fs-400: 1rem;
+  --fs-500: 1.7rem;
+  --fs-700: 3rem;
+
+  --fw-bold: 700;
+  --fw-normal: 400;
+
+  --spacing-1: 8px;
+  --spacing-2: 12px;
+  --spacing-3: 16px;
+  --spacing-4: 24px;
+  --spacing-5: 32px;
+  --spacing-6: 48px;
+
+  --w-input: 18rem;
+}
+body {
+  font-size: var(--fs-400);
+  font-family: var(--ff-poppins);
+  color: var(--clr-neutral-100);
+}
+.main {
+  display: flex;
+  min-height: 100vh;
+}
+.dashboard {
+  flex: 1;
+  background-color: var(--clr-primary-light);
+  padding-top: var(--spacing-6);
+}
+.dashboard__header {
+  font-size: var(--fs-700);
+  font-weight: var(--fw-bold);
+  text-align: center;
+  background-color: var(--clr-accent);
+  color: var(--clr-neutral-900);
+}
+.book-shelf {
+  flex: 3;
+  background-color: var(--clr-primary-dark);
+}
+.dashboard__form {
+  padding: var(--spacing-6) var(--spacing-4);
+  display: grid;
+  gap: var(--spacing-3);
+}
+.form__input-group {
+  position: relative;
+  margin-bottom: var(--spacing-6);
+  margin-inline: auto;
+}
+
+/* I Tweak this awesome input style from https://codepen.io/chris__sev/pen/LYOyjY?editors=1100 */
+.input {
+  background: none;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid var(--clr-neutral-100);
+  color: var(--clr-neutral-100);
+}
+.input--focus:focus {
+  outline: none;
+  border: none;
+}
+.input__label {
+  font-weight: var(--fw-bold);
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.input:focus ~ .input__label,
+.input:valid ~ .input__label {
+  top: -20px;
+  font-size: 14px;
+  color: var(--clr-accent);
+}
+.input__bar {
+  position: relative;
+  display: block;
+}
+.input__bar::before,
+.input__bar::after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: var(--clr-accent);
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+.input__bar::before {
+  left: 50%;
+}
+.input__bar::after {
+  right: 50%;
+}
+.input:focus ~ .input__bar:before,
+.input:focus ~ .input__bar:after {
+  width: 50%;
+}
+.input__highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+.input:focus ~ .input__highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: var(--clr-accent);
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@-moz-keyframes inputHighlighter {
+  from {
+    background: var(--clr-accent);
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+@keyframes inputHighlighter {
+  from {
+    background: var(--clr-accent);
+  }
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+/* */

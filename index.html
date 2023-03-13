@@ -21,7 +21,7 @@
           <div class="form__input-group">
             <input
               class="input input--focus"
-              id="title-input"
+              id="input-title"
               type="text"
               required
             />
@@ -29,8 +29,49 @@
             <span class="input__bar"></span>
             <label class="input__label" for="title-input">Title</label>
           </div>
+          <div class="form__input-group">
+            <input
+              class="input input--focus"
+              id="input-author"
+              type="text"
+              required
+            />
+            <span class="input__highlight"></span>
+            <span class="input__bar"></span>
+            <label class="input__label" for="title-input">Author</label>
+          </div>
+          <div class="form__tow-cols">
+            <div class="form__input-group">
+              <input
+                class="input input--focus"
+                id="input-pages"
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]+"
+                required
+              />
+              <span class="input__highlight"></span>
+              <span class="input__bar"></span>
+              <label class="input__label" for="title-input">Pages</label>
+            </div>
+            <div class="form__switch-wrapper">
+              <span>Read</span>
+              <div class="form__switch">
+                <label class="switch__label">
+                  <input class="switch" type="checkbox" />
+                  <span class="switch__slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="form__btn form__btn--active">+Add Book</button>
         </form>
-        <div class="dashboard__statics"></div>
+        <div class="dashboard__statics">
+          <header class="statics__header">Library Statics</header>
+          <p class="statics__total-books">Total books: <span class="statics__total-books-num"></span></p>
+          <p class="statics__read-books">Read books: <span class="statics__read-books-num"></span></p>
+          <p class="statics__notread-books">Not read books: <span class="statics__notread-books-num"></span></p>
+        </div>
       </div>
       <div class="book-shelf"></div>
     </main>

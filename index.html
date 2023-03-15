@@ -54,40 +54,38 @@
               <span class="input__bar"></span>
               <label class="input__label" for="title-input">Pages</label>
             </div>
-            <div class="form__switch-wrapper">
-              <span>Read</span>
-              <div class="form__switch">
-                <label class="switch__label">
-                  <input class="switch" type="checkbox" />
-                  <span class="switch__slider"></span>
-                </label>
-              </div>
+            <div class="form__checkbox">
+              <input
+                id="read-checkbox"
+                type="checkbox"
+                class="checkbox__input"
+                value="true"
+              />
+              <label for="read-checkbox">Read</label>
             </div>
           </div>
-          <button type="submit" class="form__btn form__btn--active">+Add Book</button>
+          <button
+            id="btn-submit"
+            type="submit"
+            class="form__btn form__btn--active"
+          >
+            +Add Book
+          </button>
         </form>
         <div class="dashboard__statics">
           <header class="statics__header">Library Statics</header>
-          <p class="statics__total-books">Total books: <span class="statics__total-books-num"></span></p>
-          <p class="statics__read-books">Read books: <span class="statics__read-books-num"></span></p>
-          <p class="statics__notread-books">Not read books: <span class="statics__notread-books-num"></span></p>
+          <p class="statics__total-books">
+            Total books: <span class="statics__total-books-num"></span>
+          </p>
+          <p class="statics__read-books">
+            Read books: <span class="statics__read-books-num"></span>
+          </p>
+          <p class="statics__notread-books">
+            Not read books: <span class="statics__notread-books-num"></span>
+          </p>
         </div>
       </div>
-      <div class="book-shelf">
-        <div class="book-shelf__book" data-index="0">
-          <div class="book__options">
-            <span id="delete-icon" class="book__icon"><img src="./x.svg" alt="delete icon"></span>
-            <span id="swap-icon" class="book__icon"><img src="./swap.svg" alt="swap icon"></span>
-          </div>
-          <div class="book__cover">
-            <p class="cover__title">Atomic Habits</p>
-            <p class="cover__author">By James Clear</p>
-            <p class="cover__pages">253</p>
-          </div>
-          <div class="book__side"></div>
-          <div class="book__back-cover"></div>
-        </div>
-      </div>
+      <div id="book-shelf" class="book-shelf"></div>
     </main>
   </body>
 </html>

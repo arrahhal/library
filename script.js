@@ -1,23 +1,16 @@
 class Book {
-  constructor(title, author, pages, status) {
+  constructor(title, author, pages, status, color) {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.status = status === 'true' ? 'read' : 'not read';
+    this.color = color;
+    this.status = status === true ? 'read' : 'not read';
   }
   changeStatus() {
     this.status =
       this.status === 'read'
         ? (this.status = 'not read')
         : (this.status = 'read');
-  }
-  get bookInfo() {
-    return {
-      title: this.title,
-      author: this.author,
-      pages: this.pages,
-      status: this.status,
-    };
   }
 }
 
@@ -59,16 +52,16 @@ const displayController = (() => {
     titleInput.value = '';
     authorInput.value = '';
     pagesInput.value = '';
-    readCheckbox.value = 'off';
   };
 
   const getRandomColor = () =>
     colorsArr[Math.floor(Math.random() * colorsArr.length)];
 
-  const addBookToDisplay = (book) => {
-    const bookHTML = `<div class="book-shelf__book" data-index="${
-      gameController.getBooksArr().length - 1 // because the target book is pushed to books array before display it
-    }" style="--clr-book: ${getRandomColor()}">
+  const _renderDisplay = () => {
+    bookShelf.textContent = '';
+    const books = gameController.getBooksArr();
+    for (let i = 0; i < books.length; i++) {
+      bookShelf.innerHTML += `<div class="book-shelf__book" data-index="${i}" style="--clr-book: ${books[i].color}">
       <div class="book__options">
         <span class="book__icon delete-icon"
           ><img src="./x.svg" alt="delete icon"
@@ -78,31 +71,16 @@ const displayController = (() => {
         /></span>
       </div>
       <div class="book__cover">
-        <p class="cover__title">${book.title}</p>
-        <p class="cover__author">By ${book.author}</p>
-        <p class="cover__pages">${book.pages}</p>
-        <p class="cover__status">Status: ${book.status}</p>
+        <p class="cover__title">${books[i].title}</p>
+        <p class="cover__author">By ${books[i].author}</p>
+        <p class="cover__pages">${books[i].pages}</p>
+        <p class="cover__status">Status: ${books[i].status}</p>
       </div>
       <div class="book__side"></div>
       <div class="book__back-cover"></div>
     </div>`;
-    bookShelf.innerHTML += bookHTML;
+    }
   };
-
-  const removeBookFromDisplay = (index) => {
-    const targetBook = document.querySelector(`[data-index="${index}"]`);
-    targetBook.remove();
-  };
-
-  const changeBookStatusOnDisplay = (index) => {
-    const statusSpan = document.querySelector(
-      `[data-index="${index}"] .cover__status`
-    );
-    statusSpan.textContent = `Status: ${
-      gameController.getBooksArr()[index].status
-    }`;
-  };
-
   bookShelf.addEventListener('click', (e) => {
     const targetParent = e.target.parentElement;
     if (targetParent.classList.contains('delete-icon')) {
@@ -110,13 +88,15 @@ const displayController = (() => {
         targetParent.parentElement.parentElement.dataset.index
       );
       gameController.deleteBook(index);
-      removeBookFromDisplay(index);
+      _renderDisplay();
+      staticsBoard.updateStaticsOnDisplay();
     } else if (targetParent.classList.contains('swap-icon')) {
       const index = parseInt(
         targetParent.parentElement.parentElement.dataset.index
       );
       gameController.changeStatus(index);
-      changeBookStatusOnDisplay(index);
+      staticsBoard.updateStaticsOnDisplay();
+      _renderDisplay();
     } else return;
   });
 
@@ -125,10 +105,11 @@ const displayController = (() => {
       titleInput.value,
       authorInput.value,
       pagesInput.value,
-      readCheckbox.value
+      readCheckbox.checked,
+      getRandomColor()
     );
     gameController.addBook(book);
-    addBookToDisplay(book);
+    _renderDisplay();
     clearForm();
     staticsBoard.updateStaticsOnDisplay();
     e.preventDefault();
@@ -150,14 +131,14 @@ const staticsBoard = (() => {
     totalSpan.textContent = totalBooks;
     readSpan.textContent = readBooks;
     notReadSpan.textContent = notReadBooks;
-  }
+  };
   const _renderStatics = () => {
     readBooks = 0;
     notReadBooks = 0;
     booksArr = gameController.getBooksArr();
     totalBooks = booksArr.length;
     booksArr.forEach((book) => {
-      if(book.status === 'read') readBooks++;
+      if (book.status === 'read') readBooks++;
       else notReadBooks++;
     });
   };
@@ -165,5 +146,5 @@ const staticsBoard = (() => {
   bookShelf.addEventListener('change', _renderStatics);
   return {
     updateStaticsOnDisplay,
-  }
+  };
 })();

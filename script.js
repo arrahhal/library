@@ -52,6 +52,7 @@ const displayController = (() => {
     titleInput.value = '';
     authorInput.value = '';
     pagesInput.value = '';
+    readCheckbox.checked = false;
   };
 
   const getRandomColor = () =>

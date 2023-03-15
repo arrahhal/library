@@ -420,6 +420,17 @@ body {
   position: absolute;
   left: -1.6rem;
   z-index: 9999999;
+  transition: .6s ease-out;
+}
+@media(min-width: 1024px) {
+  .book__options {
+    left: 0;
+    z-index: -999999;
+  }
+  .book-shelf__book:hover > .book__options {
+    left: -1.5rem;
+    z-index: 9999999;
+  }
 }
 .book__icon {
   cursor: pointer;

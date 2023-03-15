@@ -1,8 +1,8 @@
 :root {
   --clr-primary-500: #402218;
   --clr-primary-400: #865439;
-  --clr-primary-300: #C68B59;
-  --clr-primary-200: #D7B19D;
+  --clr-primary-300: #c68b59;
+  --clr-primary-200: #d7b19d;
   --clr-neutral-100: #fff;
   --clr-neutral-900: #000;
   --clr-red: #fc7300;
@@ -10,7 +10,7 @@
 
   --ff-poppins: 'Poppins', sans-serif;
 
-  --fs-300: .85rem;
+  --fs-300: 0.85rem;
   --fs-400: 1.1rem;
   --fs-500: 1.2rem;
   --fs-600: 1.7rem;
@@ -250,56 +250,101 @@ body {
 .form__tow-cols > * {
   flex: 1;
 }
-.form__switch-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.form__switch {
-  position: relative;
-  max-width: 50px;
-  min-width: 50px;
-  height: 26px;
-}
-.switch {
-  opacity: 0;
-  width: 0;
-  height: 0;
+.form__checkbox {
+  display: grid;
+  place-content: center;
 }
 
-.switch__slider {
+/*this awesome checkbox styles are by Geoffrey Crofte on CodePen */
+/* Base for label styling */
+[type='checkbox']:not(:checked),
+[type='checkbox']:checked {
   position: absolute;
-  cursor: pointer;
-  top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 28px;
-  background-color: var(--clr-red);
-  -webkit-transition: 0.4s;
-  /* -moz-transition: 0.4s; */
-  transition: 0.4s;
+  opacity: 0.01;
+}
+[type='checkbox']:not(:checked) + label,
+[type='checkbox']:checked + label {
+  position: relative;
+  padding-left: 2.3em;
+  font-size: 1.05em;
+  line-height: 1.7;
+  cursor: pointer;
 }
 
-.switch__slider:before {
-  position: absolute;
+/* checkbox aspect */
+[type='checkbox']:not(:checked) + label:before,
+[type='checkbox']:checked + label:before {
   content: '';
-  height: 18px;
-  width: 18px;
-  left: 4px;
-  bottom: 4px;
-  border-radius: 50%;
-  background-color: var(--clr-neutral-100);
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.4em;
+  height: 1.4em;
+  border: 1px solid #aaa;
+  background: #fff;
+  border-radius: 0.2em;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 0 var(--clr-primary-300);
+  -webkit-transition: all 0.275s;
+  transition: all 0.275s;
 }
-.switch:checked ~ .switch__slider {
+
+/* checked mark aspect */
+[type='checkbox']:not(:checked) + label:after,
+[type='checkbox']:checked + label:after {
+  content: '✕';
+  position: absolute;
+  top: 0.525em;
+  left: 0.18em;
+  font-size: 1.375em;
+  color: var(--clr-primary-400);
+  line-height: 0;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+/* checked mark aspect changes */
+[type='checkbox']:not(:checked) + label:after {
+  opacity: 0;
+  -webkit-transform: scale(0) rotate(45deg);
+  transform: scale(0) rotate(45deg);
+}
+
+[type='checkbox']:checked + label:after {
+  opacity: 1;
+  -webkit-transform: scale(1) rotate(0);
+  transform: scale(1) rotate(0);
+}
+
+/* Disabled checkbox */
+[type='checkbox']:disabled:not(:checked) + label:before,
+[type='checkbox']:disabled:checked + label:before {
+  box-shadow: none;
+  border-color: #bbb;
+  background-color: #e9e9e9;
+}
+
+[type='checkbox']:disabled:checked + label:after {
+  color: #777;
+}
+
+[type='checkbox']:disabled + label {
+  color: #aaa;
+}
+
+/* Accessibility */
+[type='checkbox']:checked:focus + label:before,
+[type='checkbox']:not(:checked):focus + label:before {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1),
+    0 0 0 6px var(--clr-primary-300);
+}
+
+.form-check-input {
+  border: none;
+  background-color: var(--clr-red);
+}
+.form-check-input:checked {
   background-color: var(--clr-green);
-}
-.switch:checked ~ .switch__slider:before {
-  -webkit-transform: translateX(22px);
-  -ms-transform: translateX(22px);
-  transform: translateX(22px);
 }
 .form__btn {
   width: var(--w-btn);
@@ -310,7 +355,7 @@ body {
   font-weight: var(--fw-bold);
   color: var(--clr-primary-500);
   margin-inline: auto;
-  transition: .4s;
+  transition: 0.4s;
   cursor: pointer;
 }
 .form__btn--active:active {
@@ -328,7 +373,11 @@ body {
 }
 .book-shelf {
   flex: 3;
-  background: linear-gradient(-15deg, var(--clr-primary-500), var(--clr-primary-300));
+  background: linear-gradient(
+    -15deg,
+    var(--clr-primary-500),
+    var(--clr-primary-300)
+  );
   display: grid;
   padding: var(--spacing-7);
   gap: var(--spacing-8);
@@ -348,7 +397,6 @@ body {
   position: absolute;
   border-radius: var(--round-book-400);
   border-bottom-left-radius: 0;
-  border-bottom: 2px solid var(--clr-book-status);
   z-index: 999;
   display: grid;
   place-content: center;
@@ -363,6 +411,10 @@ body {
 }
 .cover__pages {
   font-size: var(--fs-300);
+}
+.cover__status {
+  font-size: var(--fs-300);
+  color: rgba(204, 204, 204, 0.4);
 }
 .book__options {
   position: absolute;

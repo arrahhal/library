@@ -5,8 +5,6 @@
   --clr-primary-200: #d7b19d;
   --clr-neutral-100: #fff;
   --clr-neutral-900: #000;
-  --clr-red: #fc7300;
-  --clr-green: #bfdb38;
 
   --ff-poppins: 'Poppins', sans-serif;
 
@@ -35,7 +33,6 @@
   --round-btn: 5px;
   --round-book-400: 6px;
   --round-book-700: 24px;
-  --clr-book: hsl(342, 56%, 57%);
 }
 /* Modern CSS Reset: https://andy-bell.co.uk/a-modern-css-reset/*/
 /* Box sizing rules */
@@ -119,12 +116,23 @@ body {
 }
 .main {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
+@media(min-width: 768px) {
+  .main {
+    flex-direction: row;
+  }
+}
 .dashboard {
-  flex: 1;
+  flex: 2;
   background-color: var(--clr-primary-500);
   padding-top: var(--spacing-6);
+}
+@media (min-width: 1024px) {
+  .dashboard {
+    flex: 1;
+  }
 }
 .dashboard__header {
   font-size: var(--fs-700);
@@ -385,7 +393,7 @@ body {
   grid-template-rows: var(--h-book);
   grid-auto-rows: var(--h-book);
   overflow-y: scroll;
-  height: 100vh;
+  min-height: 100vh;
 }
 .book-shelf__book {
   position: relative;

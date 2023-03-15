@@ -3,12 +3,13 @@ class Book {
     this.title = title;
     this.author = author;
     this.pages = pages;
-    this.status = status === 'true' ? 'Read' : 'not Read';
+    this.status = status === 'true' ? 'read' : 'not read';
   }
   changeStatus() {
-    this.status = this.status === 'Read'
-      ? (this.status = 'not Read')
-      : (this.status = 'Read');
+    this.status =
+      this.status === 'read'
+        ? (this.status = 'not read')
+        : (this.status = 'read');
   }
   get bookInfo() {
     return {
@@ -94,8 +95,12 @@ const displayController = (() => {
   };
 
   const changeBookStatusOnDisplay = (index) => {
-    const statusSpan = document.querySelector(`[data-index="${index}"] .cover__status`);
-    statusSpan.textContent = `Status: ${gameController.getBooksArr()[index].status}`;
+    const statusSpan = document.querySelector(
+      `[data-index="${index}"] .cover__status`
+    );
+    statusSpan.textContent = `Status: ${
+      gameController.getBooksArr()[index].status
+    }`;
   };
 
   bookShelf.addEventListener('click', (e) => {
@@ -125,6 +130,40 @@ const displayController = (() => {
     gameController.addBook(book);
     addBookToDisplay(book);
     clearForm();
+    staticsBoard.updateStaticsOnDisplay();
     e.preventDefault();
   });
+})();
+
+const staticsBoard = (() => {
+  const totalSpan = document.querySelector('.statics__total-books-num');
+  const readSpan = document.querySelector('.statics__read-books-num');
+  const notReadSpan = document.querySelector('.statics__notread-books-num');
+  const bookShelf = document.getElementById('book-shelf');
+  let booksArr;
+  let totalBooks;
+  let readBooks;
+  let notReadBooks;
+
+  const updateStaticsOnDisplay = () => {
+    _renderStatics();
+    totalSpan.textContent = totalBooks;
+    readSpan.textContent = readBooks;
+    notReadSpan.textContent = notReadBooks;
+  }
+  const _renderStatics = () => {
+    readBooks = 0;
+    notReadBooks = 0;
+    booksArr = gameController.getBooksArr();
+    totalBooks = booksArr.length;
+    booksArr.forEach((book) => {
+      if(book.status === 'read') readBooks++;
+      else notReadBooks++;
+    });
+  };
+  updateStaticsOnDisplay();
+  bookShelf.addEventListener('change', _renderStatics);
+  return {
+    updateStaticsOnDisplay,
+  }
 })();

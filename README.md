@@ -2,6 +2,10 @@
 
 [live preview](https://rahhaly.github.io/library)
 
+## Screenshot
+
+![library screenshot](./sceenshot.png)
+
 ## Useful Resources
 
 The awesome Resources I used.

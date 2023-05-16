@@ -14,12 +14,24 @@ class Book {
   }
 }
 
-const gameController = (() => {
-  const booksArr = [];
-  const addBook = (book) => booksArr.push(book);
-  const deleteBook = (index) => booksArr.splice(index, 1);
-  const changeStatus = (index) => booksArr[index].changeStatus();
+const appController = (() => {
+  const booksArr = localStorage.getItem('books')
+    ? JSON.parse(localStorage.getItem('books'))
+    : [];
+  const addBook = (book) => {
+    booksArr.push(book);
+    _commit();
+  };
+  const deleteBook = (index) => {
+    booksArr.splice(index, 1);
+    _commit();
+  };
+  const changeStatus = (index) => {
+    booksArr[index].changeStatus();
+    _commit();
+  };
   const getBooksArr = () => booksArr;
+  const _commit = () => localStorage.setItem('books', JSON.stringify(booksArr));
 
   return {
     addBook,
@@ -60,7 +72,7 @@ const displayController = (() => {
 
   const _renderDisplay = () => {
     bookShelf.textContent = '';
-    const books = gameController.getBooksArr();
+    const books = appController.getBooksArr();
     for (let i = 0; i < books.length; i++) {
       bookShelf.innerHTML += `<div class="book-shelf__book" data-index="${i}" style="--clr-book: ${books[i].color}">
       <div class="book__options">
@@ -82,20 +94,21 @@ const displayController = (() => {
     </div>`;
     }
   };
+  document.addEventListener('DOMContentLoaded', _renderDisplay);
   bookShelf.addEventListener('click', (e) => {
     const targetParent = e.target.parentElement;
     if (targetParent.classList.contains('delete-icon')) {
       const index = parseInt(
         targetParent.parentElement.parentElement.dataset.index
       );
-      gameController.deleteBook(index);
+      appController.deleteBook(index);
       _renderDisplay();
       staticsBoard.updateStaticsOnDisplay();
     } else if (targetParent.classList.contains('swap-icon')) {
       const index = parseInt(
         targetParent.parentElement.parentElement.dataset.index
       );
-      gameController.changeStatus(index);
+      appController.changeStatus(index);
       staticsBoard.updateStaticsOnDisplay();
       _renderDisplay();
     } else return;
@@ -109,7 +122,7 @@ const displayController = (() => {
       readCheckbox.checked,
       getRandomColor()
     );
-    gameController.addBook(book);
+    appController.addBook(book);
     _renderDisplay();
     clearForm();
     staticsBoard.updateStaticsOnDisplay();
@@ -136,7 +149,7 @@ const staticsBoard = (() => {
   const _renderStatics = () => {
     readBooks = 0;
     notReadBooks = 0;
-    booksArr = gameController.getBooksArr();
+    booksArr = appController.getBooksArr();
     totalBooks = booksArr.length;
     booksArr.forEach((book) => {
       if (book.status === 'read') readBooks++;

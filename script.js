@@ -42,10 +42,12 @@ const appController = (() => {
 })();
 
 const displayController = (() => {
+  const addBookForm = document.getElementById('dashboard__form');
   const bookShelf = document.getElementById('book-shelf');
   const titleInput = document.getElementById('input-title');
   const authorInput = document.getElementById('input-author');
   const pagesInput = document.getElementById('input-pages');
+  const pagesErrorSpan = document.getElementById('error-pages');
   const readCheckbox = document.getElementById('read-checkbox');
   const submitBtn = document.getElementById('btn-submit');
   const colorsArr = [
@@ -64,6 +66,7 @@ const displayController = (() => {
     titleInput.value = '';
     authorInput.value = '';
     pagesInput.value = '';
+    pagesErrorSpan.textContent = '';
     readCheckbox.checked = false;
   };
 
@@ -115,6 +118,12 @@ const displayController = (() => {
   });
 
   submitBtn.addEventListener('click', (e) => {
+    if (!addBookForm.checkValidity()) {
+      if (pagesInput.validity.patternMismatch) {
+        pagesErrorSpan.textContent = '* Enter a valid number';
+      }
+      return;
+    }
     const book = new Book(
       titleInput.value,
       authorInput.value,
